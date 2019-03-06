@@ -12,14 +12,25 @@ document.addEventListener("mousedown", function(event){
 // On message received
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.action == 'pasteHTML') {
+    console.log("pasteHTML response: ",request.action);
     checkIfCanInsertHTML();
   }
 });
 
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+  });
+
 function checkIfCanInsertHTML(){
-  if(clickedEl.classList.contains("editable"))
-    insertHtml(clickedEl, getClipboardText());
-  else alert("You can't insert HTML content here");
+  //if(clickedEl.classList.contains("editable"))
+    insertHtml(document.activeElement, getClipboardText());
+    console.log("function_checkif");
+  //else alert("You can't insert HTML content here");
 }
 
 // Recursively select the text area in case the target points to an inner element

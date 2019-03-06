@@ -1,7 +1,7 @@
 {
-  "name": "Gmail Append HTML",
+  "name": "Gmail Append HTML [Keyboard]",
   "description": "Allows the usage of HTML content in Gmail from the context menu.",
-  "version": "0.0.1",
+  "version": "0.4.1",
   "permissions": ["contextMenus", "clipboardRead"],
   "manifest_version": 2,
   "background": {
@@ -18,5 +18,13 @@
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
+  },
+  "commands": {
+    "html_paste": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X"
+      },
+      "description": "Execute Paste as HTML"
+    }
   }
 }
