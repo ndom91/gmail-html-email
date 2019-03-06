@@ -18,10 +18,7 @@ chrome.commands.onCommand.addListener(function(command) {
   if(command=="html_paste"){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       // console.log(tabs);
-      chrome.tabs.sendMessage(tabs[0].id, {action: "pasteHTML"}, function(resp) {
-        console.log(resp);   
-      });
-      console.log("Tabs[0]: ",tabs[0].id);
+      chrome.tabs.sendMessage(tabs[0].id, {action: "pasteHTML"});
     });
   }
   //if (request.action == 'pasteHTML') {
